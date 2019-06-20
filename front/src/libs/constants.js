@@ -1,39 +1,45 @@
-import longtou from "@/assets/images/longtou@3x.png";
-import longgujia from "@/assets/images/longgujia@3x.png";
-import kongzhiren from "@/assets/images/kongzhiren@3x.png";
-import noData from "@/assets/images/icon_empty_wuguanzhu@2x.png";
-import noPath from "@/assets/images/icon_empty_wulianxi@2x.png";
+import glp from "@/assets/images/glp/glp_logo@3.png";
+import company from "@/assets/images/glp/glp_company@3.png";
+import credit from "@/assets/images/glp/glp_credit@3.png";
+import person from "@/assets/images/glp/glp_person@3.png";
 import position from "@/assets/images/position@2x.png";
 import discredit from "@/assets/images/discredit.png";
+import enterprise from "@/assets/images/glp/glp_enterprise@3.png";
 
 
 // const graphNodeIcon = [icon0, icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8, icon9, icon10, icon11, icon12, icon13, icon14, icon15, icon16, icon17, icon18, icon19];
 
 const graphNode = {
-    Top: {
-        fillColor: "#bc2f2f",
-        radius: 36,
-        // image: longtou
+    GLP: {
+        fillColor: "#078e34",
+        radius: 28,
+        image: glp
     },
-    Skeleton: {
-        fillColor: "#ffb648",
-        radius: 20,
-        // image: longgujia
+    PARENT: {
+        fillColor: "#448aca",
+        radius: 22,
+        image: company
     },
-    uboTop: {
-        fillColor: "#0076ff",
+    SUB: {
+        fillColor: "#f97657",
         radius: 16,
-        image: kongzhiren
+        image: credit
     },
-    Ordinary: {
-        fillColor: "#9DC3FF",
-        radius: 10
+    INDEPENDENCE: {
+        fillColor: "#f97657",
+        radius: 16,
+        image: credit
     },
-    // Nature: {
-    //     fillColor: "#FFF",
-    //     radius: 16,
-    //     image: ziranren
-    // },
+    COMPANY: {
+        fillColor: "#f8b551",
+        radius: 10,
+        image:enterprise
+    },
+    PERSON: {
+        fillColor: "#f8b551",
+        radius: 10,
+        image:person
+    },
     default: {
         fillColor: "#9DC3FF",
         radius: 10
@@ -53,7 +59,7 @@ const graphLink = {
     Credit: {
         fillColor: "#EBBC6C"
     },
-    Hide: {
+    Interpersonal: {
         fillColor: "#B8BF80"
     },
     Guarantee: {
@@ -83,7 +89,7 @@ const graphLinkText = {
         label: "授信用信",
         fillColor: "#EBBC6C"
     },
-    Hide: {
+    Interpersonal: {
         label: "普洛斯人际",
         fillColor: "#B8BF80"
     },
@@ -100,9 +106,25 @@ const graphLinkText = {
     }
 }
 
+
+const graphRiskNode = {
+    Start: {
+        fillColor: "rgb(249, 75, 75)",
+        radius: 10,
+    },
+    End: {
+        fillColor: "rgb(251, 165, 93)",
+        radius: 10,
+    },
+    Ordinary: {
+        fillColor: "rgb(149, 177, 253)",
+        radius: 10
+    }
+}
+
 const themeColor = '#FE7011';
 
 // const apiPath = '/kg-api';
 const apiPath = '/kg-api-web';
 
-export { apiPath, graphNode, graphLink, themeColor, graphNodeIcon, noData, noPath, position, discredit, graphLinkText}
+export { apiPath, graphNode, graphLink, themeColor, graphNodeIcon,  position, discredit, graphLinkText,graphRiskNode}

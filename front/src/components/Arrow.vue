@@ -93,11 +93,11 @@ export default {
 }
 
 
-.arrow-wrapper>.arrow_hide {
+.arrow-wrapper>.arrow_interpersonal {
   border-color: #B8BF80;
 }
 
-.arrow-wrapper>.arrow_hide::after {
+.arrow-wrapper>.arrow_interpersonal::after {
   border-left-color: #B8BF80;
 }
 
@@ -125,7 +125,7 @@ export default {
 .arrow-wrapper>.arrow_header+span,
 .arrow-wrapper>.arrow_senior+span,
 .arrow-wrapper>.arrow_credit+span,
-.arrow-wrapper>.arrow_hide+span,
+.arrow-wrapper>.arrow_interpersonal+span,
 .arrow-wrapper>.arrow_claim+span,
 .arrow-wrapper>.arrow_guarantee+span {
   color: inherit;

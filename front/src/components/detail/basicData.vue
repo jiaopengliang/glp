@@ -6,6 +6,7 @@
                 <p> 企业名称：<span class="blue">{{information.name || '--'}}</span></p>
                 <p> 曾用名：<span class="blue">{{information.onceName || '--'}}</span></p>
                 <p> 电话：<span class="blue">{{information.tel || '--'}}</span></p>
+                <p> 统一社会信用代码：<span class="blue">{{information.uniscid || '--'}}</span></p>                
                 <p> 工商注册号：<span class="blue">{{information.regNo || '--'}}</span></p>
                 <p> 组织机构代码：<span class="blue">{{information.licid || '--'}}</span></p>
                 <p> 企业状态：<span class="blue">{{information.entstatus || '--'}}</span></p>

@@ -15,6 +15,7 @@
                 <p>地址：{{information.address|| '--'}}</p>
                 <p>法定代表人：<span class="blue">{{information.legalPerson|| '--'}}</span></p>
                 <p>电话：{{information.tel|| '--'}}</p>
+                <p>事件传导预警等级：{{information.grade|| '--'}}</p>                
             </div>
         </div>
     </div>

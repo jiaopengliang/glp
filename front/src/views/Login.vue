@@ -134,22 +134,6 @@ export default {
   mounted: function() {
     // 记住密码
     this.loadSaved();
-
-    //测试
-    // var query = this.$route.query;
-    // if (query.ticket) {
-    //   let ticket = query.ticket;
-    //   let appid = 'GLP9be0b9301a02c211'
-    //   network.get('/api/login/getToken?ticket=' + ticket + '&appid=' + appid).then(res => {
-    //     if (res.data.code == 200) {
-    //       setToken(res.data.token);
-    //       setItem("glpApi", {
-    //         isReferenced: true
-    //       })
-    //       this.$router.push("/home");
-    //     }
-    //   })
-    // }
   }
 };
 </script>

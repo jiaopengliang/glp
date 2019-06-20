@@ -88,12 +88,12 @@ function netGraph(options) {
                     font: "12px Microsoft Yahei, Helvetica, Arial, sans-serif"
                 }
             },
-            selection: {
-                lineWidth: 0,
-                sizeConstant: 3,
-                fillColor: themeColor,
-                shadowColor: 'rgba(100,100,100,0.5)'
-            },
+            // selection: {
+            //     lineWidth: 0,
+            //     sizeConstant: 3,
+            //     fillColor: 'transparent',
+            //     shadowColor: 'rgba(100,100,100,0.5)'
+            // },
             linkLabelScaleBase: 0.8,
             linkDecorationMinSize: 2.6,
             linkDecorationScale: 4,

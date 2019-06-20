@@ -33,6 +33,7 @@ import RightSilde from '@/components/detail/rightSilde.vue';
 import riskData from '@/components/detail/riskData.vue';
 import basicData from '@/components/detail/basicData.vue';
 import customsData from '@/components/detail/customsData.vue';
+import riskConduction from '@/components/detail/riskConduction.vue';
 import { getItem, removeItem } from "@/libs/storage";
 export default {
     name: "detail",
@@ -45,6 +46,7 @@ export default {
                 { title: '基础信息', view: 'basicData' },
                 { title: '风险信息', view: 'riskData' },
                 { title: '海关信息', view: 'customsData' },
+                { title: '风险事件传导', view: 'riskConduction' },                
             ],
             level: 1,
             active: 0,
@@ -69,7 +71,8 @@ export default {
         RightSilde,
         basicData,
         riskData,
-        customsData
+        customsData,
+        riskConduction
     }
 }
 </script>
@@ -144,7 +147,7 @@ li {
 
 .msg-nav.tab-list-level1 .base-nav li {
     float: left;
-    width: 94px;
+    width: 102px;
     height: 50px;
     margin-right: 64px;
     margin-left: 10px;

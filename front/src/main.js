@@ -33,6 +33,10 @@ import {
   TabPane,
   Collapse,
   CollapseItem,
+  Tag,
+  Scrollbar,
+  MessageBox,
+
 } from 'element-ui';
 import './assets/theme/alert.css';
 import './assets/theme/message.css';
@@ -66,7 +70,10 @@ import './assets/theme/form-item.css';
 import './assets/theme/tabs.css';
 import './assets/theme/tab-pane.css';
 import './assets/theme/collapse.css';
-import './assets/theme/collapse-item.css'
+import './assets/theme/collapse-item.css';
+import './assets/theme/tag.css';
+import './assets/theme/message-box.css';
+import './assets/theme/message.css';
 Vue.use(Row);
 Vue.use(Col);
 Vue.use(Icon);
@@ -91,6 +98,8 @@ Vue.use(Table);
 Vue.use(TableColumn);
 Vue.use(Collapse);
 Vue.use(CollapseItem);
+Vue.use(Tag);
+Vue.use(Scrollbar);
 Message.install = function (Vue) {
   Vue.prototype.$message = Message
 }
@@ -101,6 +110,12 @@ Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Tabs)
 Vue.use(TabPane)
+
+Vue.prototype.$msgbox = MessageBox;
+Vue.prototype.$alert = MessageBox.alert;
+Vue.prototype.$confirm = MessageBox.confirm;
+Vue.prototype.$prompt = MessageBox.prompt;
+Vue.prototype.$message = Message;
 
 Vue.prototype.$echarts = echarts
 

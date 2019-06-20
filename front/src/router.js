@@ -53,8 +53,7 @@ router.beforeEach((to, from, next) => {
   }
   if (to.query.ticket) {
     let ticket = to.query.ticket;
-    let appid = 'GLP9be0b9301a02c211'
-    network.get('/api/login/getToken?ticket=' + ticket + '&appid=' + appid).then(res => {
+    network.get('/api/login/getToken?ticket=' + ticket).then(res => {
       if (res.data.code == 200) {
         setToken(res.data.token);
       }
