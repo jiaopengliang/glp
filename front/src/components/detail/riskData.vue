@@ -88,23 +88,41 @@
                             <span>{{scope.$index+1+10*(breakfaithPage-1)}}</span>
                         </template>
                     </el-table-column>
-                    <el-table-column prop="abnid" label="经营异常">
+                    <el-table-column label="案件编号">
+                        <template slot-scope="scope">
+                            <a v-if="!scope.row.urlcpws" style="color: rgb(95, 98, 101);cursor: pointer;text-decoration: underline;">{{scope.row.caseno}}</a>
+                            <a v-else target="_blank" v-bind:href="scope.row.urlcpws" style="color: rgb(95, 98, 101);cursor: pointer;text-decoration: underline;">{{scope.row.caseno}}</a>                            
+                        </template>
                     </el-table-column>
-                    <el-table-column prop="abntime" label="列入日期">
+                    <el-table-column prop="casefildate" label="立案时间">
                     </el-table-column>
-                    <el-table-column prop="decorgcn" label="列入决定机关">
+                    <el-table-column prop="excourt" label="执行法院">
                     </el-table-column>
-                    <el-table-column prop="redecorgcn" label="移出决定机关">
+                    <el-table-column prop="province" label="省份">
                     </el-table-column>
-                    <el-table-column prop="ismove" label="是否移出">
+                    <el-table-column label="履行情况">
+                        <template slot-scope="scope">
+                                <el-popover
+                                    ref="popover"
+                                    placement="top-start"
+                                    width="400"
+                                    trigger="click">
+                                    <span v-html="scope.row.duty">{{scope.row.duty}}</span>
+                                    <span slot="reference" style="cursor: pointer;text-decoration: underline;">{{scope.row.performance}}</span>
+                                </el-popover>
+                        </template>
                     </el-table-column>
-                    <el-table-column prop="remdate" label="移出日期">
+                    <el-table-column prop="performedpart" label="已履行部分">
                     </el-table-column>
-                    <el-table-column prop="remexcprescn" label="移出原因">
+                    <el-table-column prop="umperformoart" label="未履行部分">
                     </el-table-column>
-                    <el-table-column prop="specausecn" label="列入原因">
+                    <el-table-column prop="gistid" label="执行依据文号">
                     </el-table-column>
-                    <el-table-column prop="lerep" label="法定代表人">
+                    <el-table-column prop="gistunit" label="执行依据单位">
+                    </el-table-column>
+                    <el-table-column prop="pubdate" label="发布时间">
+                    </el-table-column>
+                    <el-table-column prop="illegality" label="失信被执行人行为">
                     </el-table-column>
                 </el-table>
                 <div class="kg-pagination" v-if="breakfaithShow">
@@ -141,6 +159,7 @@ export default {
             implementSize: 10,
             implementTotals: 0,
             implementShow: true,
+            visible: false
         }
     },
     methods: {
@@ -172,7 +191,7 @@ export default {
                 page: this.breakfaithPage,
                 size: this.breakfaithSize
             };
-            network.post("/api/portraits/abninf", condition)
+            network.post("/api/portraits/excutinf", condition)
                 .then(res => {
                     this.breakfaithData = res.data.data.list;
                     this.breakfaithTotals = res.data.data.totalCount;
@@ -239,9 +258,7 @@ export default {
     text-align: left !important;
 }
 
-.el-table__empty-text{
+.el-table__empty-text {
     width: 5% !important;
 }
-
-
 </style>

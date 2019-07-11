@@ -161,14 +161,14 @@
           </li>
         </ul>
         <!-- <div class="leftInfo" v-show="leftInfoShow">
-                                                                                      <p class="leftInfo-title">{{leftInfoTitle.deptName}}</p>
-                                                                                      <p class="leftInfo-li">实际控制人(法人)：
-                                                                                        <span class="leftInfo-span" v-bind:title="leftInfoTitle.conName">{{leftInfoTitle.conName}}</span>
-                                                                                      </p>
-                                                                                      <p class="leftInfo-li">最终受益人：
-                                                                                        <span class="leftInfo-span" v-bind:title="leftInfoTitle.final">{{leftInfoTitle.final || '--'}}</span>
-                                                                                      </p>
-                                                                                    </div> -->
+                                                                                              <p class="leftInfo-title">{{leftInfoTitle.deptName}}</p>
+                                                                                              <p class="leftInfo-li">实际控制人(法人)：
+                                                                                                <span class="leftInfo-span" v-bind:title="leftInfoTitle.conName">{{leftInfoTitle.conName}}</span>
+                                                                                              </p>
+                                                                                              <p class="leftInfo-li">最终受益人：
+                                                                                                <span class="leftInfo-span" v-bind:title="leftInfoTitle.final">{{leftInfoTitle.final || '--'}}</span>
+                                                                                              </p>
+                                                                                            </div> -->
       </div>
       <div v-show="graphPopup" :style="graphPopupStyle" class="graph-popup">
         <ul>
@@ -298,19 +298,19 @@
       </el-dialog>
       <!-- 债权-融租-融租供应商 -->
       <!-- <el-dialog :visible.sync="clalmDialogleasing" width="80%" height="80%" center>
-                          <el-table :data="ClalmData" style="width: 100%">
-                            <el-table-column prop="eventname" label="事件名称" width="180">
-                            </el-table-column>
-                            <el-table-column prop="fromname" label="供应商" width="250">
-                            </el-table-column>
-                            <el-table-column prop="toname" label="承租人" width="250">
-                            </el-table-column>
-                            <el-table-column prop="eventamt" label="涉及金额">
-                            </el-table-column>
-                            <el-table-column prop="assetstatus" label="资产状态">
-                            </el-table-column>
-                          </el-table>
-                        </el-dialog> -->
+                                  <el-table :data="ClalmData" style="width: 100%">
+                                    <el-table-column prop="eventname" label="事件名称" width="180">
+                                    </el-table-column>
+                                    <el-table-column prop="fromname" label="供应商" width="250">
+                                    </el-table-column>
+                                    <el-table-column prop="toname" label="承租人" width="250">
+                                    </el-table-column>
+                                    <el-table-column prop="eventamt" label="涉及金额">
+                                    </el-table-column>
+                                    <el-table-column prop="assetstatus" label="资产状态">
+                                    </el-table-column>
+                                  </el-table>
+                                </el-dialog> -->
       <!-- 担保 -->
       <el-dialog :visible.sync="GuaranteeDialogVisible" width="80%" height="80%" center>
         <el-table :data="guaranteeData" style="width: 100%" v-loading="loading">
@@ -337,6 +337,50 @@
             <template slot-scope="scope">
               <el-tag :type="scope.row.status === '有效' ? 'success' : 'primary'" disable-transitions>{{scope.row.status}}</el-tag>
             </template>
+          </el-table-column>
+        </el-table>
+      </el-dialog>
+
+      <!-- GPS -->
+      <el-dialog :visible.sync="GpsDialogVisible" width="80%" height="80%" center>
+        <el-table :data="GpsData" @row-click="openDetails" ref="refTable" v-loading="loading">
+
+          <el-table-column type="expand">
+            <template slot-scope="props">
+              <el-table :data="props.row.detail">
+                <el-table-column prop="cnyamt" label="租赁金额">
+                </el-table-column>
+                <el-table-column prop="plateno" label="车牌号">
+                </el-table-column>
+                <el-table-column prop="serialno" label="识别序列号">
+                </el-table-column>
+                <el-table-column prop="longitude" label="经度">
+                </el-table-column>
+                <el-table-column prop="latitude" label="纬度">
+                </el-table-column>
+                <el-table-column prop="spead" label="速度(Km/h)">
+                </el-table-column>
+                <el-table-column prop="gpstime" label="打点时间">
+                </el-table-column>
+              </el-table>
+            </template>
+          </el-table-column>
+
+          <el-table-column prop="fromname" label="公司名称">
+          </el-table-column>
+          <el-table-column prop="toname" label="主体名称">
+          </el-table-column>
+          <el-table-column prop="isactive" label="仍在供数">
+          </el-table-column>
+          <el-table-column prop="leasestartdate" label="租赁开始日">
+          </el-table-column>
+          <el-table-column prop="leaseenddate" label="租赁到期日">
+          </el-table-column>
+          <el-table-column prop="constatus" label="状态">
+          </el-table-column>
+          <el-table-column prop="contractno" label="合同编号">
+          </el-table-column>
+          <el-table-column prop="vehicletype" label="车辆类型">
           </el-table-column>
         </el-table>
       </el-dialog>
@@ -441,7 +485,9 @@ export default {
       ],
       loading: false,
       connectedNodeIdMap: null,
-      connectedLinkIdMap: null
+      connectedLinkIdMap: null,
+      GpsDialogVisible: false,
+      GpsData: [],
     };
   },
   computed: {
@@ -457,6 +503,7 @@ export default {
         this.result[4].count = links.filter(item => item.relationType == "Interpersonal").length;
         this.result[5].count = links.filter(item => item.relationType == "Guarantee").length;
         this.result[6].count = links.filter(item => item.relationType == "Claim").length;
+        this.result[7].count = links.filter(item => item.relationType == "GPS").length;
       }
       return this.result;
     }
@@ -820,7 +867,7 @@ export default {
         this.historyShow = false;
         this.glpsearchEnd = false;
         network
-          .get("/api/graph/controller?id=" + this.ssId).then(res => {
+          .get("/api/graph/controller?id=" + this.detailId).then(res => {
             if (res.data) {
               this.initializeGraph()
               //无数据时展示
@@ -1001,6 +1048,9 @@ export default {
           case "Claim":
             Object.assign(link.style, graphLink[link.relationType]);
             break;
+          case "GPS":
+            Object.assign(link.style, graphLink[link.relationType]);
+            break;
           default:
             Object.assign(link.style, graphLink.default);
         }
@@ -1107,6 +1157,7 @@ export default {
       if (e.clickLink) {
         this.guaranteeData = [];
         this.CreditData = [];
+        this.GpsData = [];
         this.loading = true;
         //子和独是一个字段 drawdown 
         if (e.clickLink.data.relationType == 'Credit' && e.clickLink.data.tag == '独立授信额度') {
@@ -1164,6 +1215,13 @@ export default {
           this.GuaranteeDialogVisible = true;
           network.get("/api/graph/guaranteeEvent?fromid=" + e.clickLink.data.from + "&toid=" + e.clickLink.data.to).then(res => {
             this.guaranteeData = res.data.list;
+            this.loading = false;
+          })
+        }
+        else if (e.clickLink.data.relationType == 'GPS') {
+          this.GpsDialogVisible = true;
+          network.get("/api/graph/gps?fromid=" + e.clickLink.data.from + "&toid=" + e.clickLink.data.to).then(res => {
+            this.GpsData = res.data.list;
             this.loading = false;
           })
         }
@@ -1273,7 +1331,7 @@ export default {
       this.graphLoading = true;
       network.post("/api/neo4j/shortPath", {
         id1: this.ssId,
-        id2: item.id
+        id2: item.ssid
       }).then(res => {
         this.graphLoading = false;
         this.initializeGraph();
@@ -1389,7 +1447,7 @@ export default {
             d.labelStyle.textStyle.fillColor = '#cecece';
           }
         });
-      }else{
+      } else {
         this.connectedNodeIdMap = null;
         this.connectedLinkIdMap = null;
         e.chart.updateStyle();
@@ -1632,6 +1690,12 @@ export default {
               link.style.label = `${link.tag}`;
             }
             break;
+          case "GPS":
+            Object.assign(link.style, graphLinkText[link.relationType]);
+            if (link.totalamt) {
+              link.style.label = '租赁资产金额-' + `${link.totalamt}`;
+            }
+            break;
           default:
             Object.assign(link.style, graphLinkText.default);
         }
@@ -1692,6 +1756,12 @@ export default {
       {
         type: "Claim",
         label: "债权",
+        show: true,
+        count: 0
+      },
+      {
+        type: "GPS",
+        label: "GPS供应商",
         show: true,
         count: 0
       },
@@ -1846,6 +1916,10 @@ export default {
 
 
 
+
+
+
+
 /* 重构 */
 
 .glp-home .header {
@@ -1880,6 +1954,10 @@ export default {
   border: none;
   width: 100%;
 }
+
+
+
+
 
 
 

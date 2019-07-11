@@ -10,7 +10,8 @@
                 </el-table-column>
                 <el-table-column label="事件链接">
                     <template slot-scope="scope">
-                        <a v-bind:href="scope.row.url" style="color: rgb(95, 98, 101);cursor: pointer;text-decoration: underline;">{{scope.row.title}}</a>
+                        <a v-if="!scope.row.url" style="color: rgb(95, 98, 101);cursor: pointer;text-decoration: underline;">{{scope.row.title}}</a>
+                        <a v-else target="_blank" v-bind:href="scope.row.url" style="color: rgb(95, 98, 101);cursor: pointer;text-decoration: underline;">{{scope.row.title}}</a>
                     </template>
                 </el-table-column>
                 <el-table-column

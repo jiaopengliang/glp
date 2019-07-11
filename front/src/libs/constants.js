@@ -68,6 +68,9 @@ const graphLink = {
     Claim: {
         fillColor: "#7ECEF4"
     },
+    GPS: {
+        fillColor: "#b5c4ce"
+    },
     default: {
         fillColor: "#EEE"
     }
@@ -100,6 +103,10 @@ const graphLinkText = {
     Claim: {
         label: "债权",
         fillColor: "#7ECEF4"
+    },
+    GPS: {
+        label: "GPS供应商",
+        fillColor: "#b5c4ce"
     },
     default: {
         fillColor: "#EEE"

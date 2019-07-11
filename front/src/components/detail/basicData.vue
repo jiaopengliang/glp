@@ -463,7 +463,6 @@ export default {
 
 .face-info div {
     text-align: left;
-    font-size: 12px;
 }
 
 .el-pagination.is-background .el-pager li:not(.disabled).active {

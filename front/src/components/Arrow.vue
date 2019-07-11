@@ -117,6 +117,14 @@ export default {
   border-left-color: #7ECEF4;
 }
 
+.arrow-wrapper>.arrow_gps {
+  border-color: #b5c4ce;
+}
+
+.arrow-wrapper>.arrow_gps::after {
+  border-left-color: #b5c4ce;
+}
+
 .arrow-wrapper>.arrow+span {
   color: #999;
 }
@@ -127,7 +135,8 @@ export default {
 .arrow-wrapper>.arrow_credit+span,
 .arrow-wrapper>.arrow_interpersonal+span,
 .arrow-wrapper>.arrow_claim+span,
-.arrow-wrapper>.arrow_guarantee+span {
+.arrow-wrapper>.arrow_guarantee+span,
+.arrow-wrapper>.arrow_gps+span {
   color: inherit;
 }
 </style>
