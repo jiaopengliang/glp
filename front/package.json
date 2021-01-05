@@ -10,7 +10,7 @@
     "zip:mac": "vue-cli-service build && ./bin/zip.sh dist"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "build": "^0.1.4",
     "echarts": "^4.2.0-rc.2",
     "element-ui": "^2.4.6",
